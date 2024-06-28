@@ -96,9 +96,9 @@ static speed_t getBaudrate(jint baudrate) {
  */
 extern "C"
 JNIEXPORT jobject JNICALL
-Java_com_open_serial_lib_JniSerialPort_open(JNIEnv *env, jclass clazz, jstring path, jint baud,
-                                            jint data_bits, jint stop_bits, jint parity,
-                                            jint flow_control) {
+Java_com_open_serial_liboak_JniSerialPort_open(JNIEnv *env, jclass clazz, jstring path, jint baud,
+                                               jint data_bits, jint stop_bits, jint parity,
+                                               jint flow_control) {
     int fd_port;
     speed_t speed;
     jobject mFileDescriptor;
@@ -144,32 +144,47 @@ Java_com_open_serial_lib_JniSerialPort_open(JNIEnv *env, jclass clazz, jstring p
         // Apply additional parameters
         cfg.c_cflag &= ~(CSIZE | CSTOPB | PARENB | CRTSCTS); // Clear the fields first
 
-        switch(data_bits) {
-            case 5: cfg.c_cflag |= CS5; break;
-            case 6: cfg.c_cflag |= CS6; break;
-            case 7: cfg.c_cflag |= CS7; break;
-            case 8: cfg.c_cflag |= CS8; // Default, typically used
+        switch (data_bits) {
+            case 5:
+                cfg.c_cflag |= CS5;
+                break;
+            case 6:
+                cfg.c_cflag |= CS6;
+                break;
+            case 7:
+                cfg.c_cflag |= CS7;
+                break;
+            case 8:
+                cfg.c_cflag |= CS8; // Default, typically used
                 break;
             default:
-                LOGE("Unsupported data bits setting");
+                LOGE("Unsupported data bits setting:%d", data_bits);
                 close(fd_port);
                 return nullptr;
         }
 
-        switch(stop_bits) {
+        switch (stop_bits) {
             case 0:
-            case 1: break; // Default, typically used
-            case 2: cfg.c_cflag |= CSTOPB; break;
+            case 1:
+                break; // Default, typically used
+            case 2:
+                cfg.c_cflag |= CSTOPB;
+                break;
             default:
-                LOGE("Unsupported stop bits setting");
+                LOGE("Unsupported stop bits setting:%d", stop_bits);
                 close(fd_port);
                 return nullptr;
         }
 
-        switch(parity) {
-            case 0: break; // NOPARITY
-            case 1: cfg.c_cflag |= PARENB; break; // PARITY_EVEN (example)
-            case 2: cfg.c_cflag |= PARENB | PARODD; break; // PARITY_ODD
+        switch (parity) {
+            case 0:
+                break; // NOPARITY
+            case 1:
+                cfg.c_cflag |= PARENB;
+                break; // PARITY_EVEN (example)
+            case 2:
+                cfg.c_cflag |= PARENB | PARODD;
+                break; // PARITY_ODD
             default:
                 LOGE("Unsupported parity setting");
                 close(fd_port);
@@ -209,7 +224,7 @@ Java_com_open_serial_lib_JniSerialPort_open(JNIEnv *env, jclass clazz, jstring p
  */
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_open_serial_lib_JniSerialPort_close(JNIEnv *env, jobject thiz) {
+Java_com_open_serial_liboak_JniSerialPort_close(JNIEnv *env, jobject thiz) {
     jclass SerialPortClass = env->GetObjectClass(thiz);
     jclass FileDescriptorClass = env->FindClass("java/io/FileDescriptor");
 

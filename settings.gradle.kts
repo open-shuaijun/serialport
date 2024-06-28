@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "serialport"
 include(":app")
 include(":serialport")
+include(":serialportoak")
+include(":oak")

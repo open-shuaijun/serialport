@@ -6,6 +6,9 @@
 ## 简介
 
 本项目提供了一个简单易用的Android串口通信库，旨在帮助开发者快速在Android设备上实现与外部串行设备（如Arduino、ESP8266等）的通讯。该库封装了底层串口操作细节，暴露了高层API，支持跨Android版本的兼容性。
+- **serialport + app**：Kotlin版本串口库和Demo。
+- **serialportoak + oak**：Java版本串口库和Demo。
+- **serialportnav**: Native版本，开源准备中...。
 
 ## 特性
 
