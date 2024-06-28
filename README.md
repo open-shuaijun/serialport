@@ -20,12 +20,14 @@
 ### Gradle
 在你的`build.gradle`文件中添加依赖：
 
-```groovy
+```
+
 git clone https://github.com/open-shuaijun/serialport.git
 
 dependencies {
     implementation(project(":serialport"))
 }
+
 ```
 
 
