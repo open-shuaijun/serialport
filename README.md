@@ -26,6 +26,7 @@ git clone https://github.com/open-shuaijun/serialport.git
 dependencies {
     implementation(project(":serialport"))
 }
+```
 
 
 ## 交流与支持
