@@ -18,12 +18,13 @@
 ## 安装
 
 ### Gradle
-
 在你的`build.gradle`文件中添加依赖：
 
 ```groovy
+git clone https://github.com/open-shuaijun/serialport.git
+
 dependencies {
-    implementation 'com.open.serial:serialport:1.0.0'
+    implementation(project(":serialport"))
 }
 
 
